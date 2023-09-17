@@ -87,7 +87,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="jedi.jedi.jedi_analysis">
 <span class="sig-prename descclassname"><span class="pre">jedi.jedi.</span></span><span class="sig-name descname"><span class="pre">jedi_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rim_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H_cart</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_geometries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">printout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ase_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.jedi.jedi_analysis" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>analysis of stored strain energy in redundant internal modes
+atoms: an ASE Atoms object to determine the atomic species of the indices
+rim_list: a list of 4 numpy 2D arrays the first array containing bonds, second custom bonds, third bond angles, fourth dihedrals
+B: B matrix
+H_cart: Hessian in cartesian coordinates
+delta_q: array of deformations along the RICs
+E_geometries: energy difference between the geometries
+printout: flag to print the output
+ase_units: flag to get eV for energies å fo lengths and degree for angles otherwise it is kcal/mol, Bohr and radians</p>
+</dd></dl>
 
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
@@ -105,7 +114,11 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">jedi.jedi.</span></span><span class="sig-name descname"><span class="pre">Jedi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomsF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hbond</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.jedi.Jedi" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
+<dd><p>initializes the object
+atoms0: Atoms object of relaxed structure with calculated energy
+atomsF: Atoms object of strained structure with calculated energy
+modes: VibrationsData object with hessian of relaxed structure</p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.ase_objtype">
 <span class="sig-name descname"><span class="pre">ase_objtype</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'jedi'</span></em><a class="headerlink" href="#jedi.jedi.Jedi.ase_objtype" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -113,7 +126,8 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.fromdict">
 <em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">fromdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#jedi.jedi.Jedi" title="jedi.jedi.Jedi"><span class="pre">jedi.jedi.Jedi</span></a></span></span><a class="headerlink" href="#jedi.jedi.Jedi.fromdict" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>make it readable with .read()</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.get_b_matrix">
@@ -164,24 +178,20 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ase_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hbond</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.jedi.Jedi.run" title="Permalink to this definition"></a></dt>
-<dd><p>Add more fish or shrimp to the tank.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inhabitant</strong> – The type of inhabitant, either shrimp of fish</p></li>
-<li><p><strong>quantity</strong> – The number of fish or shrimp to be added</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>TankIsFullError</strong> – if the tank is already full</p>
+<dd><p>run the analysis</p>
+<p>Parameters:</p>
+<dl class="simple">
+<dt>indices: lst</dt><dd><p>list of indices of a substructure if desired</p>
 </dd>
 </dl>
+<p>ase_units: flag to get eV for energies å fo lengths and degree for angles otherwise it is kcal/mol, Bohr and radians</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.todict">
 <span class="sig-name descname"><span class="pre">todict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#jedi.jedi.Jedi.todict" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>make it saveable with .write()</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.vmd_gen">

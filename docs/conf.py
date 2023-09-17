@@ -30,6 +30,7 @@ author = 'ad'
 extensions = ['sphinx_rtd_theme','sphinx.ext.autodoc','sphinx.ext.mathjax'
 ]
 
+autoclass_content = 'both'
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

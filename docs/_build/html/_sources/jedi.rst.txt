@@ -1,6 +1,8 @@
 jedi package
 ============
 
+.. autofunction:: jedi.jedi.jedi_analysis
+
 Submodules
 ----------
 
