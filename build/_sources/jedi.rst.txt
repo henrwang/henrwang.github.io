@@ -1,38 +1,12 @@
-jedi package
+Jedi
 ============
 
 .. autofunction:: jedi.jedi.jedi_analysis
 
-Submodules
-----------
+.. autofunction:: jedi.jedi.jedi_printout
 
-jedi.colors module
-------------------
-
-.. automodule:: jedi.colors
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
------------------
-jedi.quotes module
-------------------
-
-.. automodule:: jedi.quotes
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: jedi
-   :members:
-   :show-inheritance:
-
-.. class:: Jedi
+.. autofunction:: jedi.jedi.jedi_printout_bonds
 
 .. autoclass:: jedi.jedi.Jedi
    :members:   
-   :undoc-members:
+

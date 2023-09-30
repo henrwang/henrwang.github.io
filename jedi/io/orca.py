@@ -11,7 +11,9 @@ from ase.atoms import Atoms
 from ase.calculators.singlepoint import SinglePointCalculator
 
 def read(filename):
-
+    '''read orca outputs
+    filename str
+        filename'''
     energy=None
     forces=None
     dipole=None
@@ -56,7 +58,13 @@ def read(filename):
 
     return atoms
 
-def read_hessian(label,atoms):
+def get_vibrations(label,atoms):
+    '''read hessian 
+    label: str
+        filename w/o .log
+    atoms: class
+        structure of which the frequency analysis was performed
+    '''
     if not os.path.isfile(label + '.hess'):
         raise ReadError("hess file missing.")
     """Read Forces from ORCA output file."""
@@ -173,5 +181,5 @@ class OrcaDynamics:
 
 
 class OrcaOptimizer(OrcaDynamics):
-
+    '''allowing ase to use Qchem geometry optimizations'''
     keywords = {'task':'opt'}
