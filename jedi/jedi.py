@@ -82,15 +82,15 @@ def jedi_printout_bonds(atoms,rim_list,E_geometries, E_RIMs_total, proc_geom_RIM
         flag to get eV for energies å fo lengths and degree for angles otherwise it is kcal/mol, Bohr and radians 
     file: string
         file to store the output
-    Returns
-        2D array
+
     '''
     pass
 def get_hbonds(mol):
     '''
     get all hbonds in a structure
     defined as X-H···Y where X and Y can be O, N, F and the angle XHY is larger than 90° and the distance between HY is shorter than 0.9 times the sum of the vdw radii of H and Y
-    
+    mol: class
+        structure of which the hbonds should be determined
     returns
         2D array of indices
     '''
@@ -120,7 +120,7 @@ class Jedi:
         '''
         pass
 
-    def run(self,indices=None,ase_units=False,hbond=True):
+    def run(self,indices=None,ase_units=False):
         """run the analysis
 
         Parameters:
@@ -202,3 +202,7 @@ class Jedi:
             list of indices of atoms in desired substructure
         '''
         pass
+    
+    def add_custom_bonds(self, bonds):
+        '''bonds: np 2d array
+            add custom bonds after creating the object'''

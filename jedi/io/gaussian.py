@@ -117,7 +117,7 @@ def read_gaussian_out(fd, index=-1):
     
     return configs[index]
 
-def get_vibrations(label,atoms):
+def get_vibrations(label,atoms,indices=None):
     '''
     read hessian 
     label: str

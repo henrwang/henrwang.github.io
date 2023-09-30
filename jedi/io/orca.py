@@ -58,12 +58,14 @@ def read(filename):
 
     return atoms
 
-def get_vibrations(label,atoms):
+def get_vibrations(label,atoms,indices):
     '''read hessian 
     label: str
         filename w/o .log
     atoms: class
         structure of which the frequency analysis was performed
+    indices: lst
+        indices of unconstrained atoms 
     '''
     if not os.path.isfile(label + '.hess'):
         raise ReadError("hess file missing.")
@@ -116,6 +118,9 @@ class OrcaDynamics:
     special_keywords: Dict[str, str] = dict()
 
     def __init__(self, atoms, calc=None):
+        '''for optimizations
+        atoms: class
+            Structure with orca calculator'''
         self.atoms = atoms
         if calc is not None:
             self.calc = calc

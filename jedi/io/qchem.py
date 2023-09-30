@@ -163,6 +163,9 @@ class QChemDynamics:
     special_keywords: Dict[str, str] = dict()
 
     def __init__(self, atoms, calc=None):
+        '''for optimizations
+        atoms: class
+            Structure with qchem calculator'''
         self.atoms = atoms
         if calc is not None:
             self.calc = calc
