@@ -16,11 +16,12 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Utilities" href="utils.html" />
-    <link rel="prev" title="Tutorial" href="examples.html" /> 
+    <link rel="next" title="Utilities" href="utils/utils.html" />
+    <link rel="prev" title="Further analysis" href="examples/examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,12 +51,14 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preparation.html">Input Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">Further analysis</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Jedi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils/utils.html">Utilities</a></li>
 </ul>
 
         </div>
@@ -84,6 +87,12 @@
              
   <section id="jedi">
 <h1>Jedi<a class="headerlink" href="#jedi" title="Permalink to this headline"></a></h1>
+<p>Jedi is written as a class which includes the structure’s geometries and its hessian in the relaxed state. The analysis works automatically with its inbuilt funcions. It converts the Hessian in
+redundant internal coordinates and calculates the energy in every
+internal mode using the equation shown below.</p>
+<div class="math notranslate nohighlight">
+\[E_{RIMs} = \frac{1}{2} * {\Delta q}^T * H_q * \Delta q\]</div>
+<p>using the jedi_analysis function.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="jedi.jedi.jedi_analysis">
 <span class="sig-prename descclassname"><span class="pre">jedi.jedi.</span></span><span class="sig-name descname"><span class="pre">jedi_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rim_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H_cart</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_geometries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">printout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ase_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.jedi.jedi_analysis" title="Permalink to this definition"></a></dt>
@@ -165,8 +174,6 @@ atoms: class</p>
 </dd>
 <dt>file: string</dt><dd><p>file to store the output</p>
 </dd>
-<dt>Returns</dt><dd><p>2D array</p>
-</dd>
 </dl>
 </dd></dl>
 
@@ -181,6 +188,13 @@ atoms: class</p>
 <dt>modes: class</dt><dd><p>VibrationsData object with hessian of relaxed structure</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="jedi.jedi.Jedi.add_custom_bonds">
+<span class="sig-name descname"><span class="pre">add_custom_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.jedi.Jedi.add_custom_bonds" title="Permalink to this definition"></a></dt>
+<dd><p>bonds: np 2d array
+add custom bonds after creating the object</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.fromdict">
 <em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">fromdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#jedi.jedi.Jedi" title="jedi.jedi.Jedi"><span class="pre">jedi.jedi.Jedi</span></a></span></span><a class="headerlink" href="#jedi.jedi.Jedi.fromdict" title="Permalink to this definition"></a></dt>
@@ -253,13 +267,13 @@ indices: np.2Darray</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="jedi.jedi.Jedi.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ase_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hbond</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.jedi.Jedi.run" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ase_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.jedi.Jedi.run" title="Permalink to this definition"></a></dt>
 <dd><p>run the analysis</p>
 <p>Parameters:</p>
 <dl class="simple">
 <dt>indices: lst</dt><dd><p>list of indices of a substructure if desired</p>
 </dd>
-<dt>ase_units:</dt><dd><p>flag to get eV for energies å fo lengths and degree for angles otherwise it is kcal/mol, Bohr and radians</p>
+<dt>ase_units: boolean</dt><dd><p>flag to get eV for energies å fo lengths and degree for angles otherwise it is kcal/mol, Bohr and radians</p>
 </dd>
 </dl>
 </dd></dl>
@@ -307,8 +321,8 @@ default: ‘None’</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="examples.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="utils.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="examples/examples.html" class="btn btn-neutral float-left" title="Further analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utils/utils.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

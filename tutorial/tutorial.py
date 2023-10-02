@@ -20,3 +20,5 @@ j = Jedi(n2, n2l, modes)
 
 j.run()
 
+j.vmd_gen()
+

@@ -1,8 +1,0 @@
-Jedi
-====
-
-.. toctree::
-   :maxdepth: 4
-
-   jedi
-   tutorial

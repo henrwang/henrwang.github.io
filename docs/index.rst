@@ -69,17 +69,20 @@ Documentation
 
 
 .. toctree::
-    :maxdepth: 1
-    :caption: User Guide    
+   :maxdepth: 1
+   :caption: User Guide
 
-    examples
+   preparation/preparation
+   examples/tutorial
+   examples/examples
+    
 
 .. toctree::
    :maxdepth: 1
    :caption: Modules
 
    jedi
-   utils
+   utils/utils
 
 
 

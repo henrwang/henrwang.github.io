@@ -127,7 +127,7 @@ class Jedi:
 
         indices: lst
             list of indices of a substructure if desired
-        ase_units: 
+        ase_units: boolean
             flag to get eV for energies å fo lengths and degree for angles otherwise it is kcal/mol, Bohr and radians 
 
         """
