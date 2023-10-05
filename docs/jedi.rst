@@ -8,7 +8,7 @@ internal mode using the equation shown below.
 
 .. math:: E_{RIMs} = \frac{1}{2} * {\Delta q}^T * H_q * \Delta q 
 
-using the jedi_analysis function. 
+
 
 .. autofunction:: jedi.jedi.jedi_analysis
 
