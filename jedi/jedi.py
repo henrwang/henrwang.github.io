@@ -93,7 +93,7 @@ def get_hbonds(mol):
 
     mol: class
         Structure of which the hbonds should be determined.
-    returns
+    Returns:
         2D array of indices.
     '''
     pass
