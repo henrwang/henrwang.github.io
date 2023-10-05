@@ -15,7 +15,7 @@ Custom bonds can be analyzed too.
     from jedi.jedi import Jedi
     from jedi.jedi import get_hbonds
 
-    mol=ase.io.read('dis.json')
+    mol=ase.io.read('opt.json')
     mol2=ase.io.read('dis.json')
     modes=VibrationsData.read('modes.json')
     j=Jedi(mol,mol2,modes)

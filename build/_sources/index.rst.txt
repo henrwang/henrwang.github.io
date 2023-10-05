@@ -72,7 +72,7 @@ Documentation
    :maxdepth: 1
    :caption: User Guide
 
-   preparation
+   preparation/preparation
    examples/tutorial
    examples/examples
     

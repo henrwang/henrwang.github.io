@@ -50,7 +50,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../preparation.html">Input Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preparation/preparation.html">Input Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Further analysis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#custom-bonds">Custom bonds</a></li>
@@ -61,7 +61,7 @@
 <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../jedi.html">Jedi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">Utilities</a></li>
 </ul>
 
         </div>
@@ -99,7 +99,7 @@
 <span class="kn">from</span> <span class="nn">jedi.jedi</span> <span class="kn">import</span> <span class="n">Jedi</span>
 <span class="kn">from</span> <span class="nn">jedi.jedi</span> <span class="kn">import</span> <span class="n">get_hbonds</span>
 
-<span class="n">mol</span><span class="o">=</span><span class="n">ase</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;dis.json&#39;</span><span class="p">)</span>
+<span class="n">mol</span><span class="o">=</span><span class="n">ase</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;opt.json&#39;</span><span class="p">)</span>
 <span class="n">mol2</span><span class="o">=</span><span class="n">ase</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;dis.json&#39;</span><span class="p">)</span>
 <span class="n">modes</span><span class="o">=</span><span class="n">VibrationsData</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;modes.json&#39;</span><span class="p">)</span>
 <span class="n">j</span><span class="o">=</span><span class="n">Jedi</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">mol2</span><span class="p">,</span><span class="n">modes</span><span class="p">)</span>

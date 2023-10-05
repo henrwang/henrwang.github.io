@@ -50,7 +50,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../preparation.html">Input Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preparation/preparation.html">Input Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Further analysis</a></li>
 </ul>
@@ -97,19 +97,22 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="jedi.io.qchem.read">
 <span class="sig-prename descclassname"><span class="pre">jedi.io.qchem.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.io.qchem.read" title="Permalink to this definition"></a></dt>
-<dd><p>read qchem out file</p>
+<dd><p>Read qchem out file.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="jedi.io.qchem.get_vibrations">
 <span class="sig-prename descclassname"><span class="pre">jedi.io.qchem.</span></span><span class="sig-name descname"><span class="pre">get_vibrations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.io.qchem.get_vibrations" title="Permalink to this definition"></a></dt>
-<dd><p>read hessian
-label: str</p>
-<blockquote>
-<div><p>filename w/o .log</p>
-</div></blockquote>
+<dd><p>Read hessian.</p>
 <dl class="simple">
-<dt>atoms: class</dt><dd><p>structure of which the frequency analysis was performed</p>
+<dt>label: str</dt><dd><p>Filename w/o .log.</p>
+</dd>
+<dt>atoms: class</dt><dd><p>Structure of which the frequency analysis was performed.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>VibrationsData object.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -117,12 +120,11 @@ label: str</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="jedi.io.qchem.QChemOptimizer">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">jedi.io.qchem.</span></span><span class="sig-name descname"><span class="pre">QChemOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jedi.io.qchem.QChemOptimizer" title="Permalink to this definition"></a></dt>
-<dd><p>allowing ase to use Qchem geometry optimizations</p>
-<p>for optimizations
-atoms: class</p>
-<blockquote>
-<div><p>Structure with qchem calculator</p>
-</div></blockquote>
+<dd><p>Allowing ase to use Qchem geometry optimizations.</p>
+<dl class="simple">
+<dt>atoms: class</dt><dd><p>Structure with qchem calculator</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
