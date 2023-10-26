@@ -61,5 +61,5 @@ generates a vmd folder with files that are VMD scripts 'bl.vmd', 'all.vmd' (, 'b
 .. image:: vmdscene.png
    :width: 20%
 
-.. image:: blcolorbar.png
+.. image:: allcolorbar.pdf
    :width: 10%
