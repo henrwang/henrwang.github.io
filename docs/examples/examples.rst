@@ -91,17 +91,19 @@ Getting distorted molecules can be as simple as just moving one atom and calcula
     label="opt"
     mol.calc=Vasp(label='%s/%s'%(label,label),prec='Accurate',
             xc='PBE',pp='PBE', nsw=0,ivdw=12,
-            lreal=False,ibrion=2, isym=0,encut=450,ediff=0.00000001,isif=2,symprec=1.0e-5 ,command= "your command to start vasp jobs")
+            lreal=False,ibrion=2, isym=0,encut=450,ediff=0.00001,isif=2,symprec=1.0e-5 ,command= "your command to start vasp jobs")
     mol.calc.write_input(mol)
     mol=ase.io.read('opt/vasprun.xml')  
     mol.get_potential_energy()
+
     #frequency analysis
     label="freq"
     mol.calc=Vasp(label='%s/%s'%(label,label),prec='Accurate',
             xc='PBE',pp='PBE', nsw=0,ivdw=12,
-            lreal=False,ibrion=5, isym=0,encut=450,ediff=0.00000001,isif=2,symprec=1.0e-5 ,command= "your command to start vasp jobs")
+            lreal=False,ibrion=5, isym=0,encut=450,ediff=0.00001,isif=2,symprec=1.0e-5 ,command= "your command to start vasp jobs")
     mol.get_potential_energy()
     modes=mol.calc.get_vibrations()
+
     #distort molecule
     mol2=mol.copy()
     v=mol2.get_distance(3,14,vector=True)
@@ -121,9 +123,14 @@ Getting distorted molecules can be as simple as just moving one atom and calcula
     j.run()
     j.vmd_gen()
 
+.. image:: biphenyl/biphg.png
+    :width: 20%
+
+.. image:: biphenyl/biphp.png
+    :width: 20%
+
 Benzene
 -------
-
 
 Another way is to shrink boxes in periodic boundary conditions.
 
@@ -181,6 +188,12 @@ Another way is to shrink boxes in periodic boundary conditions.
     j2=Jedi(mol,mol3,modes)
     j2.run()
     j2.vmd_gen(modus='all', man_strain=0.637)
+
+.. image:: benzene/ben666.png
+    :width: 18%
+
+.. image:: benzene/ben888.png
+    :width: 24%
 
 For a better comparison of two seperate analyzes, one can set a reference strain energy for the coloring by using the man_strain parameter.
 
@@ -410,12 +423,11 @@ Analysing functional materials is of particular interest. Graphene is shown as a
 .. code-block:: python
 
 
-hcn
+HCN
 ---
 
-For this example the function needs to be modified so that C atoms are seen as possible donors.
+The HCN crystal is an interesting construct to examine bulk behavior. It consists of small molecules with strong intermolecular interactions. The standard Jedi analysis does not include those interactions.
 
-:download:`get_hbond <hcn/dipole.py>`
 
 
 .. code-block:: python
@@ -429,41 +441,97 @@ For this example the function needs to be modified so that C atoms are seen as p
     from gpaw.analyse.vdwradii import vdWradii
     from ase.constraints import FixAtoms
 
-    mol=ase.io.read('opt.json')
+    mol=ase.io.read('opt.xyz')
     convergence={'energy': 0.00001}
-
-
     calc=DFTD3(dft=GPAW(xc='PBE',mode=PW(700),kpts=[3,2,2],convergence=convergence),damping='bj')
     mol.calc=calc
 
     opt=BFGS(mol)
     opt.run(fmax=0.05)
 
-    ase.io.write('opt.json',mol)
-    #mol.set_constraint(FixAtoms([12,17,14,18,23,20,16,15,13,22,21,19,0,5,2,6,11,8,4,3,1,10,9,7]))
-
-
     calc=DFTD3(dft=GPAW(xc='PBE',mode=PW(700),kpts=[3,2,2],convergence=convergence,symmetry='off'),damping='bj')
     mol.calc=calc
 
-    vib=Vibrations(mol)#),indices=[12,17,14,18,23,20,16,15,13,22,21,19,0,5,2,6,11,8,4,3,1,10,9,7])
+    vib=Vibrations(mol)
     vib.run()
     vib.summary()
     modes=vib.get_vibrations()
-    modes.write('modes.json')
-    print(VibrationsData.read('modes.json').get_frequencies())
 
-    from ase.vibrations.vibrations import VibrationsData
-    modes=VibrationsData.read('modes.json')
-    np.savetxt('freqtest',modes.get_frequencies())
-
-    cell=mol.get_cell()
+    vib=Vibrations(mol,indices=[0,4,1,6,10,7])
+    vib.run()
+    vib.summary()
+    partmodes=vib.get_vibrations()
+    
+    mol2=mol.copy()
+    cell=mol2.get_cell()
     cell[2][2]-=0.1
-    mol.set_cell(cell)
+    mol2.set_cell(cell)
 
-    mol.calc=calc
+    mol2.calc=calc
 
-    dis=BFGS(mol)
+    dis=BFGS(mol2)
     dis.run(fmax=0.05)
-    mol.set_constraint()
-    ase.io.write('dis.json',mol)
+    mol2.set_constraint()
+    ase.io.write('dis.json',mol2)
+
+    j=Jedi(mol,mol2,modes)
+   # j.add_custom_bonds(get_hbonds(mol))
+    
+    j.run()
+    j.vmd_gen()
+
+    jpart=Jedi(mol,mol2,partmodes)
+   # j.add_custom_bonds(get_hbonds(mol))
+
+    jpart.partial_analysis(indices=[0,4,1,6,10,7])
+    jpart.vmd_gen()
+
+The visualization should look like following picture.
+
+.. image:: hcn/all.pdf
+    :width: 30%
+
+.. image:: hcn/all/vmd/allcolorbar.pdf
+    :width: 10%
+
+.. image:: hcn/part.pdf
+    :width: 30%
+
+.. image:: hcn/part/vmd/allcolorbar.pdf
+    :width: 10%
+
+
+
+To include the dipole interactions for this example, a modified version of the get_hbonds() function can be modified so that C atoms are seen as possible donors.
+
+:download:`get_hbond <hcn/dipole.py>`
+
+.. code-block:: python
+
+    j=Jedi(mol,mol2,modes)
+    j.add_custom_bonds(get_hbonds(mol))
+    
+    j.run()
+    j.vmd_gen()
+
+    jpart=Jedi(mol,mol2,partmodes)
+    j.add_custom_bonds(get_hbonds(mol))
+
+    jpart.partial_analysis(indices=[0,4,1,6,10,7])
+    jpart.vmd_gen()
+
+With dipole interactions the visualization looks as follows
+
+.. image:: hcn/alldipole.pdf
+    :width: 30%
+
+.. image:: hcn/alldipole/vmd/allcolorbar.pdf
+    :width: 10%
+
+.. image:: hcn/partdipole.pdf
+    :width: 30%
+
+.. image:: hcn/partdipole/vmd/allcolorbar.pdf
+    :width: 10%
+
+The existence of different values for the symmetrical RIC is caused by the low accuracy which gives a low quality hessian.
