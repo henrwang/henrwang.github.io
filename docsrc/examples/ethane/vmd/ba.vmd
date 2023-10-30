@@ -72,7 +72,7 @@ pbc box -color 32
 # Adding a representation with the appropriate colorID for each bond
 mol addrep top
 mol modstyle 2 top bonds
-mol modcolor 2 top {colorid 1}
+mol modcolor 2 top {colorid 30}
 mol modselect 2 top {index 0 1}
 
 mol addrep top
@@ -124,7 +124,7 @@ mol top $bar_mol
 set center [molinfo $old_top get center]
 set center [regsub -all {[{}]} $center ""]
 set center [split $center]
-set min -0.003136704019970835
+set min 0.0
 set max -0.0016937547208216344
 set length 30.0
 set width [expr $length / 6]

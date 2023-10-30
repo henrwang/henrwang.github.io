@@ -235,22 +235,17 @@ mol modselect 33 top {index 23 28}
 set x [[atomselect top "index 13 21"] get {x y z}]
 set a [lindex $x 0] 
 set b [lindex $x 1] 
-draw  color 1
+draw  color 28
 draw line  $a $b width 3 style dashed
 set x [[atomselect top "index 15 20"] get {x y z}]
 set a [lindex $x 0] 
 set b [lindex $x 1] 
-draw  color 1
-draw line  $a $b width 3 style dashed
-set x [[atomselect top "index 9 27"] get {x y z}]
-set a [lindex $x 0] 
-set b [lindex $x 1] 
-draw  color 1
+draw  color 25
 draw line  $a $b width 3 style dashed
 set x [[atomselect top "index 10 27"] get {x y z}]
 set a [lindex $x 0] 
 set b [lindex $x 1] 
-draw  color 1
+draw  color 27
 draw line  $a $b width 3 style dashed
 		display update off
 display resetview
@@ -272,7 +267,7 @@ set center [molinfo $old_top get center]
 set center [regsub -all {[{}]} $center ""]
 set center [split $center]
 set min 0.0
-set max 0.0
+set max 0.24466810925421922
 set length 30.0
 set width [expr $length / 6]
 

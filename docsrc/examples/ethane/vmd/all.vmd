@@ -124,7 +124,7 @@ mol top $bar_mol
 set center [molinfo $old_top get center]
 set center [regsub -all {[{}]} $center ""]
 set center [split $center]
-set min -0.0020554228166466217
+set min 0.0
 set max 5.794970609203859
 set length 30.0
 set width [expr $length / 6]

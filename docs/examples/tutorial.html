@@ -91,12 +91,14 @@
 <span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
 <span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">BFGS</span>
 <span class="kn">from</span> <span class="nn">ase.vibrations</span> <span class="kn">import</span> <span class="n">Vibrations</span>
+<span class="c1">#create the structure and optimize it</span>
 <span class="n">n2</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)],</span><span class="n">calculator</span><span class="o">=</span><span class="n">EMT</span><span class="p">())</span>
 <span class="n">BFGS</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-
+<span class="c1">#do a frequency analysis</span>
 <span class="n">vib</span> <span class="o">=</span> <span class="n">Vibrations</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
 <span class="n">vib</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="n">modes</span> <span class="o">=</span> <span class="n">vib</span><span class="o">.</span><span class="n">get_vibrations</span><span class="p">()</span>
+<span class="c1">#distort the structure and get the energy</span>
 <span class="n">n2l</span> <span class="o">=</span> <span class="n">n2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">n2l</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">n2</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.1</span>
 <span class="n">n2l</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">EMT</span><span class="p">()</span>
@@ -137,7 +139,7 @@ RIM No.       RIM <span class="nb">type</span>                       indices    
 </div>
 <p>generates a vmd folder with files that are VMD scripts ‘bl.vmd’, ‘all.vmd’ (, ‘ba.vmd’, ‘da.vmd’), pictures of colorbars ‘blcolorbar.png’, ‘allcolorbar.png’, …, energies calculated for each bond E_bl, E_all, …, and the xyz geometry of the strained structure xF.txt.</p>
 <a class="reference internal image-reference" href="../_images/vmdscene.png"><img alt="../_images/vmdscene.png" src="../_images/vmdscene.png" style="width: 20%;" /></a>
-<a class="reference internal image-reference" href="../_images/allcolorbar5.pdf"><img alt="../_images/allcolorbar5.pdf" src="../_images/allcolorbar5.pdf" style="width: 10%;" /></a>
+<a class="reference internal image-reference" href="../_images/allcolorbar1.pdf"><img alt="../_images/allcolorbar1.pdf" src="../_images/allcolorbar1.pdf" style="width: 10%;" /></a>
 </section>
 
 
